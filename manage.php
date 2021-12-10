@@ -32,7 +32,13 @@ $PAGE->set_context(\context_system::instance());
 $PAGE->set_title(get_string('title_manage', 'local_aquarium'));
 
 
+$fishdata = $DB->get_records('local_aquarium_fish_data');
+
 echo $OUTPUT->header();
-echo "<h1>hello</h1>";
+$templetecontext = (object)[
+    'fishdata' => array_values($fishdata),
+    'editurl' => new moodle_url('/local/aquarium/update_data.php'),
+];
+echo $OUTPUT->render_from_template('local_aquarium/manage', $templetecontext);
 
 echo $OUTPUT->footer();
