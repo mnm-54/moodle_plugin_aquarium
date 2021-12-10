@@ -9,21 +9,12 @@
                 <FIELD NAME="fish" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
                 <FIELD NAME="amount" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
                 <FIELD NAME="price" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-            </FIELDS>
-            <KEYS>
-                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-            </KEYS>
-        </TABLE>
-
-        <TABLE NAME="local_aquarium_fish_health" COMMENT="each record is a heath condition of any fish">
-            <FIELDS>
-                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="fish" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
                 <FIELD NAME="health_condition" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
             </KEYS>
         </TABLE>
+
     </TABLES>
 </XMLDB>
