@@ -7,4 +7,6 @@
 - Update fish amount and price
 - Track health index of fish
 - Store data in the database
+- Update data in the database
+- Delete data from database
 - Show data from database
