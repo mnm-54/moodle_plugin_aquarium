@@ -25,9 +25,11 @@
 
 $string['title_manage'] = 'Manage and View';
 $string['title_update'] = 'Update Data';
-$string['name'] = 'Fish name';
+$string['name'] = 'Fish name:';
 $string['amount'] = 'No of available fishes';
 $string['price'] = 'Price of each';
 $string['health'] = 'Health Condition';
 $string['cancelled'] = 'Update form is cancelled';
 $string['add_data'] = 'Add new fish data';
+$string['add_amount'] = 'Number of new fish added:';
+$string['add_price'] = 'Price of new fish:';

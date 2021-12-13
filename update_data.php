@@ -35,8 +35,19 @@ $mform = new update_form();
 
 global $DB;
 
+$fishid = array();
+$choices = $DB->get_records('local_aquarium_fish_data');
+$c = 0;
+foreach ($choices as $choice) {
+    $fishid[$c] = $choice->id;
+    $c++;
+}
 
-
+$healthchoices = array(
+    0 => "Healthy",
+    1 => "Sick",
+    2 => "not determined"
+);
 
 
 if ($mform->is_cancelled()) {
@@ -45,13 +56,13 @@ if ($mform->is_cancelled()) {
 } else if ($fromform = $mform->get_data()) {
     //In this case you process validated data. $mform->get_data() returns data posted in form.
     $record = new stdClass();
-    $record->id = $fromform->fishname;
+    $record->id = $fishid[$fromform->fishname];
     $record->amount = $fromform->amount;
     $record->price = $fromform->price;
-    $record->health_condition = $fromform->health;
+    $record->health_condition = $healthchoices[$fromform->health];
 
     $DB->update_record('local_aquarium_fish_data', $record, $bulk = false);
-    redirect($CFG->wwwroot . '/local/aquarium/manage.php', "new data is added to the database ");
+    redirect($CFG->wwwroot . '/local/aquarium/manage.php', "new data is updated in the database. ");
 }
 
 echo $OUTPUT->header();

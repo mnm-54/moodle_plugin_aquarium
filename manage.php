@@ -38,6 +38,7 @@ echo $OUTPUT->header();
 $templetecontext = (object)[
     'fishdata' => array_values($fishdata),
     'editurl' => new moodle_url('/local/aquarium/update_data.php'),
+    'addurl' => new moodle_url('/local/aquarium/add_data.php')
 ];
 echo $OUTPUT->render_from_template('local_aquarium/manage', $templetecontext);
 

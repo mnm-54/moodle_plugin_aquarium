@@ -31,17 +31,27 @@ class update_form extends moodleform
     //Add elements to form
     public function definition()
     {
-        global $CFG;
+        global $CFG, $DB;
 
         $mform = $this->_form; // Don't forget the underscore! 
 
-        $choices = array(
-            0 => "GoldFish",
-            1 => "Tetra",
-            2 => "Danio",
-            3 => "Guppy"
+        $choices = $DB->get_records('local_aquarium_fish_data');
+        $fishnames = array();
+        $c = 0;
+        foreach ($choices as $choice) {
+            $fishnames[$c] = $choice->fish;
+            $fishid[$c] = $choice->id;
+            $c++;
+        }
+
+
+        $healthchoices = array(
+            0 => "Healthy",
+            1 => "Sick",
+            2 => "not determined"
         );
-        $mform->addElement('select', 'fishname', get_string('name', 'local_aquarium'),  $choices);
+
+        $mform->addElement('select', 'fishname', get_string('name', 'local_aquarium'),  $fishnames);
         $mform->setDefault('fishname', 0);
 
 
@@ -53,9 +63,8 @@ class update_form extends moodleform
         $mform->setType('price', PARAM_NOTAGS);                   //Set type of element
         $mform->setDefault('price', '50');        //Default value
 
-        $mform->addElement('text', 'health', get_string('health', 'local_aquarium')); // Add elements to your form
-        $mform->setType('health', PARAM_NOTAGS);                   //Set type of element
-        $mform->setDefault('health', 'Healthy');        //Default value
+        $mform->addElement('select', 'health', get_string('health', 'local_aquarium'),  $healthchoices);
+        $mform->setDefault('health', 0);
 
 
         $this->add_action_buttons();
