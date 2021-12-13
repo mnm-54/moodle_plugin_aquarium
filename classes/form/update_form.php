@@ -57,11 +57,11 @@ class update_form extends moodleform
 
         $mform->addElement('text', 'amount', get_string('amount', 'local_aquarium')); // Add elements to your form
         $mform->setType('amount', PARAM_NOTAGS);                   //Set type of element
-        $mform->setDefault('amount', '10');        //Default value
+        // $mform->setDefault('amount', '10');        //Default value
 
         $mform->addElement('text', 'price', get_string('price', 'local_aquarium')); // Add elements to your form
         $mform->setType('price', PARAM_NOTAGS);                   //Set type of element
-        $mform->setDefault('price', '50');        //Default value
+        // $mform->setDefault('price', '50');        //Default value
 
         $mform->addElement('select', 'health', get_string('health', 'local_aquarium'),  $healthchoices);
         $mform->setDefault('health', 0);
