@@ -27,14 +27,16 @@
 require_once(__DIR__ . '/../../config.php');
 require_once($CFG->dirroot . '/local/aquarium/classes/form/update_form.php');
 
+$PAGE->set_url(new moodle_url('/local/aquarium/update_data.php'));
+$PAGE->set_context(\context_system::instance());
+$PAGE->set_title(get_string('title_update', 'local_aquarium'));
+
 $mform = new update_form();
 
 global $DB;
 
 
-$PAGE->set_url(new moodle_url('/local/aquarium/update_data.php'));
-$PAGE->set_context(\context_system::instance());
-$PAGE->set_title(get_string('title_update', 'local_aquarium'));
+
 
 
 if ($mform->is_cancelled()) {
@@ -49,7 +51,7 @@ if ($mform->is_cancelled()) {
     $record->health_condition = $fromform->health;
 
     $DB->update_record('local_aquarium_fish_data', $record, $bulk = false);
-    redirect($CFG->wwwroot . '/local/aquarium/manage.php', "the update form is cancelled");
+    redirect($CFG->wwwroot . '/local/aquarium/manage.php', "new data is added to the database ");
 }
 
 echo $OUTPUT->header();

@@ -15,19 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'local_aquarium', language 'en', branch 'MOODLE_20_STABLE'
+ * Version details
  *
- * @package   local_aquarium
- * 
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    local_add_data
+ * @author     shahriar
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @var stdClass $plugin 
  */
 
+require_once(__DIR__ . '/../../config.php');
+require_once($CFG->dirroot . '/local/aquarium/classes/form/add_form.php');
 
-$string['title_manage'] = 'Manage and View';
-$string['title_update'] = 'Update Data';
-$string['name'] = 'Fish name';
-$string['amount'] = 'No of available fishes';
-$string['price'] = 'Price of each';
-$string['health'] = 'Health Condition';
-$string['cancelled'] = 'Update form is cancelled';
-$string['add_data'] = 'Add new fish data';
+$PAGE->set_url(new moodle_url('/local/aquarium/add_data.php'));
+$PAGE->set_context(\context_system::instance());
+$PAGE->set_title(get_string('add_data', 'local_aquarium'));
+
+
+echo $OUTPUT->header();
+echo $OUTPUT->footer();
