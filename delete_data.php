@@ -24,38 +24,39 @@
  */
 
 require_once(__DIR__ . '/../../config.php');
-require_once($CFG->dirroot . '/local/aquarium/classes/form/add_form.php');
+require_once($CFG->dirroot . '/local/aquarium/classes/form/delete_form.php');
 
-$PAGE->set_url(new moodle_url('/local/aquarium/add_data.php'));
+$PAGE->set_url(new moodle_url('/local/aquarium/delete_data.php'));
 $PAGE->set_context(\context_system::instance());
-$PAGE->set_title(get_string('add_data', 'local_aquarium'));
+$PAGE->set_title(get_string('title_delete', 'local_aquarium'));
 
 
-global $DB;
+$fishid = array();
+$fishnames = array();
+$choices = $DB->get_records('local_aquarium_fish_data');
+$c = 0;
+foreach ($choices as $choice) {
+    $fishnames[$c] = $choice->fish;
+    $fishid[$c] = $choice->id;
+    $c++;
+}
+//Instantiate simplehtml_form 
+$mform = new delete_form();
 
-
-$mform = new add_form();
-
-$choices = array(
-    0 => "Healthy",
-    1 => "Sick",
-    2 => "not determined"
-);
-
+//Form processing and displaying is done here
 if ($mform->is_cancelled()) {
     //Handle form cancel operation, if cancel button is present on form
-    redirect($CFG->wwwroot . '/local/aquarium/manage.php', 'No new fish is added.');
+    redirect($CFG->wwwroot . '/local/aquarium/manage.php', "Nothing is deleted");
 } else if ($fromform = $mform->get_data()) {
     //In this case you process validated data. $mform->get_data() returns data posted in form.
-    $record = new stdClass();
-    $record->fish = $fromform->fishname;
-    $record->amount = $fromform->amount;
-    $record->price = $fromform->price;
-    $record->health_condition = $choices[$fromform->health];
+    $id = $fishid[$fromform->fishname];
+    $DB->delete_records('local_aquarium_fish_data', array('id' => $id));
 
-    $DB->insert_record('local_aquarium_fish_data', $record);
-    redirect($CFG->wwwroot . '/local/aquarium/manage.php', 'New fish is added.');
+    redirect($CFG->wwwroot . '/local/aquarium/manage.php', $fishnames[$fromform->fishname] . " is deleted");
 }
+
 echo $OUTPUT->header();
+
 $mform->display();
+
 echo $OUTPUT->footer();

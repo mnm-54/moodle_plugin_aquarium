@@ -17,7 +17,7 @@
 /**
  * Version details
  *
- * @package    local_edit
+ * @package    local_aquarium
  * @author     shahriar
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @var stdClass $plugin 
