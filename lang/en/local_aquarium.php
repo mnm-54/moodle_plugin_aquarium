@@ -27,6 +27,7 @@ $string['title_manage'] = 'Manage and View';
 $string['title_update'] = 'Update Data';
 $string['title_delete'] = 'Delete Data';
 $string['name'] = 'Fish name:';
+$string['id'] = 'id';
 $string['amount'] = 'No of available fishes';
 $string['price'] = 'Price of each';
 $string['health'] = 'Health Condition';

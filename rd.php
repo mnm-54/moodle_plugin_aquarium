@@ -26,13 +26,12 @@
 require_once(__DIR__ . '/../../config.php');
 require_once($CFG->dirroot . '/local/aquarium/classes/form/delete_form.php');
 
-$PAGE->set_url(new moodle_url('/local/aquarium/delete_data.php'));
+$PAGE->set_url(new moodle_url('/local/aquarium/rd.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title(get_string('title_delete', 'local_aquarium'));
 
 
 $fishid = required_param("id", PARAM_INT);
-$fishdata = $DB->get_record('local_aquarium_fish_data', array('id' => $fishid));
-$choices = $DB->delete_records('local_aquarium_fish_data', array('id' => $fishid));
 
-redirect($CFG->wwwroot . '/local/aquarium/manage.php', $fishdata->fish . " is deleted");
+
+redirect($CFG->wwwroot . '/local/aquarium/manage.php', "redireceted");

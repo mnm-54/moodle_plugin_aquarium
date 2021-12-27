@@ -31,19 +31,7 @@ class update_form extends moodleform
     //Add elements to form
     public function definition()
     {
-        global $CFG, $DB;
-
         $mform = $this->_form; // Don't forget the underscore! 
-
-        $choices = $DB->get_records('local_aquarium_fish_data');
-        $fishnames = array();
-        $c = 0;
-        foreach ($choices as $choice) {
-            $fishnames[$c] = $choice->fish;
-            $fishid[$c] = $choice->id;
-            $c++;
-        }
-
 
         $healthchoices = array(
             0 => "Healthy",
@@ -51,20 +39,23 @@ class update_form extends moodleform
             2 => "not determined"
         );
 
-        $mform->addElement('select', 'fishname', get_string('name', 'local_aquarium'),  $fishnames);
-        $mform->setDefault('fishname', 0);
+        $mform->addElement('hidden', 'id', get_string('id', 'local_aquarium'));
+        $mform->setType('id', PARAM_INT);
 
+        $mform->addElement('text', 'fish', get_string('name', 'local_aquarium'));
+        $mform->setType('fish', PARAM_NOTAGS);
+        //$mform->setDefault('fish', $fishdata->fish);
 
         $mform->addElement('text', 'amount', get_string('amount', 'local_aquarium')); // Add elements to your form
-        $mform->setType('amount', PARAM_NOTAGS);                   //Set type of element
-        // $mform->setDefault('amount', '10');        //Default value
+        $mform->setType('amount', PARAM_INT);                 //Set type of element
+        //$mform->setDefault('amount', $fishdata->amount);        //Default value
 
         $mform->addElement('text', 'price', get_string('price', 'local_aquarium')); // Add elements to your form
-        $mform->setType('price', PARAM_NOTAGS);                   //Set type of element
-        // $mform->setDefault('price', '50');        //Default value
+        $mform->setType('price', PARAM_INT);                   //Set type of element
+        //$mform->setDefault('price', $fishdata->price);        //Default value
 
         $mform->addElement('select', 'health', get_string('health', 'local_aquarium'),  $healthchoices);
-        $mform->setDefault('health', 0);
+        //$mform->setDefault('health', $c);
 
 
         $this->add_action_buttons();
