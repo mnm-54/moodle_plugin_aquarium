@@ -24,10 +24,9 @@
     }
 }}
 
-
 <h1>Available fish data</h1>
 <table border="1">
-    <thead>
+  <thead>
     <tr>
       <th>Fish name</th>
       <th>Amount</th>
@@ -35,21 +34,35 @@
       <th>Health Condition</th>
     </tr>
   </thead>
-  <hr>
+  <hr />
   <tbody>
     {{#fishdata}}
     <tr>
-        <td>{{fish}}</td>
-          <td>{{amount}}</td>
-          <td>{{price}}</td>
-          <td>{{health_condition}}</td>
+      <td>{{ fish }}</td>
+      <td>{{ amount }}</td>
+      <td>{{ price }}</td>
+      <td>{{ health_condition }}</td>
     </tr>
   </tbody>
   {{/fishdata}}
 </table>
 
-
-<hr>
-<input type="button"  value="Update fish data" class="btn btn-outline-primary" onclick="location.href='{{editurl}}'">
-<input type="button"  value="Add new fish" class="btn btn-outline-primary" onclick="location.href='{{addurl}}'">
-<input type="button"  value="Delete fish info" class="btn btn-outline-primary" onclick="location.href='{{deleteurl}}'">
+<hr />
+<input
+  type="button"
+  value="Update fish data"
+  class="btn btn-outline-primary"
+  onclick="location.href='{{ editurl }}'"
+/>
+<input
+  type="button"
+  value="Add new fish"
+  class="btn btn-outline-primary"
+  onclick="location.href='{{ addurl }}'"
+/>
+<input
+  type="button"
+  value="Delete fish info"
+  class="btn btn-outline-primary"
+  onclick="location.href='{{ deleteurl }}'"
+/>

@@ -55,6 +55,7 @@ if ($mform->is_cancelled()) {
     redirect($CFG->wwwroot . '/local/aquarium/manage.php', "the update form is cancelled");
 } else if ($fromform = $mform->get_data()) {
     //In this case you process validated data. $mform->get_data() returns data posted in form.
+    //die(var_dump($fromform));
     $record = new stdClass();
     $record->id = $fishid[$fromform->fishname];
     $record->amount = $fromform->amount;
