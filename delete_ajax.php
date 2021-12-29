@@ -29,5 +29,4 @@ global $DB;
 
 if (isset($_GET['id'])) {
     $fish = $DB->delete_records('local_aquarium_fish_data', array('id' => $_GET['id']));
-    echo "";
 }
