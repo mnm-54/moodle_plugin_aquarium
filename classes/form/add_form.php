@@ -44,7 +44,7 @@ class add_form extends moodleform
 
         $mform->addElement('text', 'fishname', get_string('name', 'local_aquarium')); // Add elements to your form
         $mform->setType('fishname', PARAM_NOTAGS);                   //Set type of element
-        $mform->setDefault('fishname', 'Please enter a new fishname');        //Default value
+        $mform->setDefault('fishname', get_string('newname', 'local_aquarium'));        //Default value
 
         $mform->addElement('text', 'amount', get_string('add_amount', 'local_aquarium')); // Add elements to your form
         $mform->setType('amount', PARAM_NOTAGS);                   //Set type of element

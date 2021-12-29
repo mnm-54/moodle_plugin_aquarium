@@ -24,26 +24,10 @@
  */
 
 require_once(__DIR__ . '/../../config.php');
-require_once($CFG->dirroot . '/local/aquarium/classes/form/delete_form.php');
 
 global $DB;
 
-$PAGE->set_url(new moodle_url('/local/aquarium/delete_data.php'));
-$PAGE->set_context(\context_system::instance());
-$PAGE->set_title(get_string('title_delete', 'local_aquarium'));
-
-$fishid = optional_param('id', '-1', PARAM_INT);
-
-$fishdata = $DB->get_record('local_aquarium_fish_data', array('id' => $fishid));
-//die(var_dump($fishdata));
-
-
-$PAGE->requires->js_call_amd('local_aquarium/confirm_delete', 'init', array($fishid, $fishdata->fish));
-echo $OUTPUT->header();
-echo $OUTPUT->footer();
-
-
-// $fishdata = $DB->get_record('local_aquarium_fish_data', array('id' => $fishid));
-// $choices = $DB->delete_records('local_aquarium_fish_data', array('id' => $fishid));
-
-//redirect($CFG->wwwroot . '/local/aquarium/manage.php', $fishdata->fish . " is deleted");
+if (isset($_GET['id'])) {
+    $fish = $DB->delete_records('local_aquarium_fish_data', array('id' => $_GET['id']));
+    echo "";
+}
