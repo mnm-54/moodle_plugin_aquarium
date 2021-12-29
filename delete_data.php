@@ -35,15 +35,8 @@ $PAGE->set_title(get_string('title_delete', 'local_aquarium'));
 $fishid = optional_param('id', '-1', PARAM_INT);
 
 $fishdata = $DB->get_record('local_aquarium_fish_data', array('id' => $fishid));
-//die(var_dump($fishdata));
 
 
 $PAGE->requires->js_call_amd('local_aquarium/confirm_delete', 'init', array($fishid, $fishdata->fish));
 echo $OUTPUT->header();
 echo $OUTPUT->footer();
-
-
-// $fishdata = $DB->get_record('local_aquarium_fish_data', array('id' => $fishid));
-// $choices = $DB->delete_records('local_aquarium_fish_data', array('id' => $fishid));
-
-//redirect($CFG->wwwroot . '/local/aquarium/manage.php', $fishdata->fish . " is deleted");
