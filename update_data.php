@@ -31,17 +31,15 @@ $PAGE->set_url(new moodle_url('/local/aquarium/update_data.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title(get_string('title_update', 'local_aquarium'));
 
+
+$fishid = optional_param('id', 0, PARAM_INT);
+
+//die(var_dump(required_param("id", PARAM_INT)));
+
+$fishdata = $DB->get_record('local_aquarium_fish_data', array("id" => $fishid));
+
 $mform = new update_form();
-
-global $DB;
-
-$fishid = array();
-$choices = $DB->get_records('local_aquarium_fish_data');
-$c = 0;
-foreach ($choices as $choice) {
-    $fishid[$c] = $choice->id;
-    $c++;
-}
+$mform->set_data($fishdata);
 
 $healthchoices = array(
     0 => "Healthy",
@@ -57,7 +55,8 @@ if ($mform->is_cancelled()) {
     //In this case you process validated data. $mform->get_data() returns data posted in form.
     //die(var_dump($fromform));
     $record = new stdClass();
-    $record->id = $fishid[$fromform->fishname];
+    $record->id = $fromform->id;
+    $record->fish = $fromform->fish;
     $record->amount = $fromform->amount;
     $record->price = $fromform->price;
     $record->health_condition = $healthchoices[$fromform->health];

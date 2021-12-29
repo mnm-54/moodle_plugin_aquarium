@@ -31,32 +31,8 @@ $PAGE->set_context(\context_system::instance());
 $PAGE->set_title(get_string('title_delete', 'local_aquarium'));
 
 
-$fishid = array();
-$fishnames = array();
-$choices = $DB->get_records('local_aquarium_fish_data');
-$c = 0;
-foreach ($choices as $choice) {
-    $fishnames[$c] = $choice->fish;
-    $fishid[$c] = $choice->id;
-    $c++;
-}
-//Instantiate simplehtml_form 
-$mform = new delete_form();
+$fishid = required_param("id", PARAM_INT);
+$fishdata = $DB->get_record('local_aquarium_fish_data', array('id' => $fishid));
+$choices = $DB->delete_records('local_aquarium_fish_data', array('id' => $fishid));
 
-//Form processing and displaying is done here
-if ($mform->is_cancelled()) {
-    //Handle form cancel operation, if cancel button is present on form
-    redirect($CFG->wwwroot . '/local/aquarium/manage.php', "Nothing is deleted");
-} else if ($fromform = $mform->get_data()) {
-    //In this case you process validated data. $mform->get_data() returns data posted in form.
-    $id = $fishid[$fromform->fishname];
-    $DB->delete_records('local_aquarium_fish_data', array('id' => $id));
-
-    redirect($CFG->wwwroot . '/local/aquarium/manage.php', $fishnames[$fromform->fishname] . " is deleted");
-}
-
-echo $OUTPUT->header();
-
-$mform->display();
-
-echo $OUTPUT->footer();
+redirect($CFG->wwwroot . '/local/aquarium/manage.php', $fishdata->fish . " is deleted");

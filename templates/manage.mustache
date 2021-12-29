@@ -32,6 +32,7 @@
       <th>Amount</th>
       <th>Price</th>
       <th>Health Condition</th>
+      <th>Action</th>
     </tr>
   </thead>
   <hr />
@@ -42,6 +43,22 @@
       <td>{{ amount }}</td>
       <td>{{ price }}</td>
       <td>{{ health_condition }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-danger"
+          onclick="location.href='{{ deleteurl }}?id={{ id }}'"
+        >
+          Delete
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning"
+          onclick="location.href='{{ editurl }}?id={{ id }}'"
+        >
+          Edit
+        </button>
+      </td>
     </tr>
   </tbody>
   {{/fishdata}}
@@ -50,19 +67,7 @@
 <hr />
 <input
   type="button"
-  value="Update fish data"
-  class="btn btn-outline-primary"
-  onclick="location.href='{{ editurl }}'"
-/>
-<input
-  type="button"
   value="Add new fish"
   class="btn btn-outline-primary"
   onclick="location.href='{{ addurl }}'"
-/>
-<input
-  type="button"
-  value="Delete fish info"
-  class="btn btn-outline-primary"
-  onclick="location.href='{{ deleteurl }}'"
 />
