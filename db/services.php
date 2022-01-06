@@ -23,10 +23,26 @@
  * @var stdClass $plugin 
  */
 
-require_once(__DIR__ . '/../../config.php');
 
-global $DB;
+defined('MOODLE_INTERNAL') || die();
 
-if (isset($_GET['id'])) {
-    $fish = $DB->delete_records('local_aquarium_fish_data', array('id' => $_GET['id']));
-}
+$functions = array(
+    'local_aquarium_delete_fish' => array(
+        'classname' => 'local_aquarium_external_delete',
+        'methodname'  => 'delete_fish',
+        'classpath'   => 'local/aquarium/externallib.php',
+        'description' => 'Delete fish data of given id',
+        'type'        => 'write',
+        'ajax' => true,
+    )
+);
+
+$services = array(
+    'local_aquarium_delete' => array(
+        'functions' => array('local_aquarium_delete_fish'),
+        'restrictedusers' => 0,
+        // into the administration
+        'enabled' => 1,
+        'shortname' =>  'aquarium_delete_service',
+    )
+);

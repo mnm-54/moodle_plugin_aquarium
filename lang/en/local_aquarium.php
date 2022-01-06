@@ -22,7 +22,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
+$string['pluginname'] = 'Local aquarium plugin';
 $string['title_manage'] = 'Manage and View';
 $string['title_update'] = 'Update Data';
 $string['title_delete'] = 'Delete Data';
